@@ -1,59 +1,33 @@
-# ---------------------------
-# Base image
-# ---------------------------
 FROM python:3.10-slim
 
-# Set working directory
 WORKDIR /pipeline
 
-# ---------------------------
-# Install system dependencies
-# ---------------------------
-# Install git, bash, and build essentials (needed by dagster-dbt and dbt-postgres)
-USER root
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    bash \
-    build-essential \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-# ---------------------------
-# Python environment setup
-# ---------------------------
+# Copy dependencies first for better caching
 COPY requirements.txt .
 RUN python3 -m venv /opt/venv \
     && . /opt/venv/bin/activate \
     && pip install --upgrade pip \
     && pip install -r requirements.txt
 
-# Ensure the virtualenv is in the PATH
 ENV PATH="/opt/venv/bin:$PATH"
 
-# ---------------------------
-# Copy your code folders
-# ---------------------------
+# Copy code folders
 COPY data_extraction/ /pipeline/data_extraction/
 COPY postgres_dbt/ /pipeline/postgres_dbt/
 COPY orchestration/ /pipeline/orchestration/
 
-# Copy dbt profile to the right path
+# Copy dbt profile
 RUN mkdir -p /root/.dbt
 COPY postgres_dbt/profiles.yml /root/.dbt/profiles.yml
 
-# ---------------------------
-# Create non-root user (best practice)
-# ---------------------------
-RUN useradd -m appuser \
+# Security best practices
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* \
+    && useradd -m appuser \
     && chown -R appuser:appuser /pipeline
 USER appuser
 
-# ---------------------------
-# Expose Dagster web UI port
-# ---------------------------
+# Expose Dagster port
 EXPOSE 3001
 
-# ---------------------------
-# Command: Run Dagster dev server
-# ---------------------------
+# Default command for Dagster dev
 CMD ["dagster", "dev", "-f", "/pipeline/orchestration/definitions.py", "-h", "0.0.0.0", "-p", "3001"]
