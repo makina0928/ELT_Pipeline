@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   dwh_pipeline:
     build:
@@ -20,11 +18,6 @@ services:
       - 3001
     depends_on:
       - postgres_etl
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3001"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
     networks:
       - dokploy-network
     labels:
@@ -33,8 +26,10 @@ services:
       - "traefik.http.routers.dwh-pipeline.entrypoints=websecure"
       - "traefik.http.routers.dwh-pipeline.tls.certresolver=letsencrypt"
       - "traefik.http.services.dwh-pipeline.loadbalancer.server.port=3001"
-      - "traefik.http.middlewares.dwh-pipeline-auth.basicauth.users=${TRAEFIK_BASIC_AUTH}"
+        # Auth (forces browser popup)
+      - "traefik.http.middlewares.dwh-pipeline-auth.basicauth.users=\"${TRAEFIK_BASIC_AUTH}\""
       - "traefik.http.routers.dwh-pipeline.middlewares=dwh-pipeline-auth@docker"
+      # HTTP → HTTPS redirect
       - "traefik.http.routers.dwh-pipeline-redirect.entrypoints=web"
       - "traefik.http.routers.dwh-pipeline-redirect.rule=Host(`elt.zamdatalabs.com`)"
       - "traefik.http.routers.dwh-pipeline-redirect.middlewares=redirect-to-https@docker"
@@ -58,3 +53,40 @@ volumes:
 networks:
   dokploy-network:
     external: true
+
+
+
+# services:
+#   dwh_pipeline:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.dwh
+#     env_file:
+#       - .env
+#     environment:
+#       CREDENTIALS__CONNECTION_STRING: ${POSTGRES_CONNECTION_STRING}
+#       DBT_HOST: ${DBT_HOST}
+#       DBT_USER: ${DBT_USER}
+#       DBT_PASSWORD: ${DBT_PASSWORD}
+#       DBT_PORT: ${DBT_PORT}
+#       DBT_DBNAME: ${DBT_DBNAME}
+#       DBT_SCHEMA: ${DBT_SCHEMA}
+#     volumes:
+#       - ./data_extraction/Data:/pipeline/data_extraction/Data:ro
+#     ports:
+#       - "3001:3001"
+
+
+# services:
+#   dwh_pipeline:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.dwh
+#     env_file:
+#       - .env
+#     environment:
+#       CREDENTIALS__CONNECTION_STRING: ${POSTGRES_CONNECTION_STRING}
+#     volumes:
+#       - ${HOME}/.dbt:/root/.dbt:ro
+#     ports:
+#       - "3001:3001"

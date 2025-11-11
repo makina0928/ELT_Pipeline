@@ -1,61 +1,22 @@
 FROM python:3.10-slim
 
-WORKDIR /pipeline
+WORKDIR /pipeline/orchestration
 
-# ---------------------------
-# Install system dependencies
-# ---------------------------
-USER root
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    bash \
-    build-essential \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-# Verify git actually exists (optional debug)
-RUN which git && git --version
-
-# ---------------------------
-# Set up Python venv
-# ---------------------------
-COPY requirements.txt .
-RUN python3 -m venv /opt/venv \
-    && . /opt/venv/bin/activate \
-    && pip install --upgrade pip \
-    && pip install -r requirements.txt
-
-ENV PATH="/opt/venv/bin:$PATH"
-
-# ---------------------------
-# Copy your project
-# ---------------------------
+# Copy only your code — NOT credentials
 COPY data_extraction/ /pipeline/data_extraction/
 COPY postgres_dbt/ /pipeline/postgres_dbt/
 COPY orchestration/ /pipeline/orchestration/
 
-# Copy dbt profile
-RUN mkdir -p /root/.dbt
+# Copy the dbt profile to the correct path
 COPY postgres_dbt/profiles.yml /root/.dbt/profiles.yml
 
-# ---------------------------
-# Create non-root user
-# ---------------------------
-RUN useradd -m appuser && chown -R appuser:appuser /pipeline
-USER appuser
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
-# ---------------------------
-# Expose Dagster UI
-# ---------------------------
+COPY requirements.txt .
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# Expose the Dagster UI port
 EXPOSE 3001
 
-# ---------------------------
-# Fix GitPython PATH for non-root users
-# ---------------------------
-ENV GIT_PYTHON_GIT_EXECUTABLE=/usr/bin/git
-ENV GIT_PYTHON_REFRESH=quiet
-
-# ---------------------------
-# Start Dagster
-# ---------------------------
-CMD ["dagster", "dev", "-f", "/pipeline/orchestration/definitions.py", "-h", "0.0.0.0", "-p", "3001"]
+CMD ["dagster", "dev", "-f", "definitions.py", "-h", "0.0.0.0", "-p", "3001"]
