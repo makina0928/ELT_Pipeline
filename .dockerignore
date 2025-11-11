@@ -1,0 +1,11 @@
+# .dockerignore
+__pycache__/
+*.pyc
+*.log
+*.csv
+*.db
+.venv/
+.env
+.git/
+logs/
+tmp/

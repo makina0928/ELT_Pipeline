@@ -1,22 +1,47 @@
 FROM python:3.10-slim
 
-WORKDIR /pipeline/orchestration
+WORKDIR /pipeline
 
-# Copy only your code — NOT credentials
+# ---------------------------
+# Install system dependencies (for dbt + GitPython)
+# ---------------------------
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    bash \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# ---------------------------
+# Set up Python virtual environment
+# ---------------------------
+COPY requirements.txt .
+RUN python3 -m venv /opt/venv \
+    && . /opt/venv/bin/activate \
+    && pip install --upgrade pip \
+    && pip install -r requirements.txt
+
+ENV PATH="/usr/bin:/opt/venv/bin:$PATH"
+ENV GIT_PYTHON_GIT_EXECUTABLE=/usr/bin/git
+ENV GIT_PYTHON_REFRESH=quiet
+
+# ---------------------------
+# Copy project files
+# ---------------------------
 COPY data_extraction/ /pipeline/data_extraction/
 COPY postgres_dbt/ /pipeline/postgres_dbt/
 COPY orchestration/ /pipeline/orchestration/
 
-# Copy the dbt profile to the correct path
+# Copy dbt profile
+RUN mkdir -p /root/.dbt
 COPY postgres_dbt/profiles.yml /root/.dbt/profiles.yml
 
-RUN python3 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
-COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
-
-# Expose the Dagster UI port
+# ---------------------------
+# Expose Dagster UI
+# ---------------------------
 EXPOSE 3001
 
-CMD ["dagster", "dev", "-f", "definitions.py", "-h", "0.0.0.0", "-p", "3001"]
+# ---------------------------
+# Default command to start Dagster
+# ---------------------------
+CMD ["dagster", "dev", "-f", "/pipeline/orchestration/definitions.py", "-h", "0.0.0.0", "-p", "3001"]
