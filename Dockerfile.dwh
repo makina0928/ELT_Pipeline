@@ -2,12 +2,23 @@ FROM python:3.10-slim
 
 WORKDIR /pipeline
 
-# Install system dependencies including git
-RUN apt-get update && apt-get install -y \
+# ---------------------------
+# Install system dependencies
+# ---------------------------
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
+    bash \
+    build-essential \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy dependencies first for better caching
+# Verify git actually exists (optional debug)
+RUN which git && git --version
+
+# ---------------------------
+# Set up Python venv
+# ---------------------------
 COPY requirements.txt .
 RUN python3 -m venv /opt/venv \
     && . /opt/venv/bin/activate \
@@ -16,7 +27,9 @@ RUN python3 -m venv /opt/venv \
 
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Copy code folders
+# ---------------------------
+# Copy your project
+# ---------------------------
 COPY data_extraction/ /pipeline/data_extraction/
 COPY postgres_dbt/ /pipeline/postgres_dbt/
 COPY orchestration/ /pipeline/orchestration/
@@ -25,13 +38,24 @@ COPY orchestration/ /pipeline/orchestration/
 RUN mkdir -p /root/.dbt
 COPY postgres_dbt/profiles.yml /root/.dbt/profiles.yml
 
-# Security best practices
-RUN useradd -m appuser \
-    && chown -R appuser:appuser /pipeline
+# ---------------------------
+# Create non-root user
+# ---------------------------
+RUN useradd -m appuser && chown -R appuser:appuser /pipeline
 USER appuser
 
-# Expose Dagster port
+# ---------------------------
+# Expose Dagster UI
+# ---------------------------
 EXPOSE 3001
 
-# Default command for Dagster dev
+# ---------------------------
+# Fix GitPython PATH for non-root users
+# ---------------------------
+ENV GIT_PYTHON_GIT_EXECUTABLE=/usr/bin/git
+ENV GIT_PYTHON_REFRESH=quiet
+
+# ---------------------------
+# Start Dagster
+# ---------------------------
 CMD ["dagster", "dev", "-f", "/pipeline/orchestration/definitions.py", "-h", "0.0.0.0", "-p", "3001"]
