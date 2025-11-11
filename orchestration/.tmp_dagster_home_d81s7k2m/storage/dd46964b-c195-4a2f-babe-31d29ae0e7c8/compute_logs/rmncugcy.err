@@ -1,0 +1,9 @@
+[32m2025-10-19 01:21:50 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556427 - LOGS_CAPTURED - Started capturing logs in process (pid: 1556427).
+[32m2025-10-19 01:21:50 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556427 - dlt_load - STEP_START - Started execution of step "dlt_load".
+[32m2025-10-19 01:21:53 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556427 - dlt_load - STEP_OUTPUT - Yielded output "dlt_source_loans" of type "Nothing". (Type check passed).
+[32m2025-10-19 01:21:53 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556427 - dlt_load - ASSET_MATERIALIZATION - Materialized value dlt_source_loans.
+[32m2025-10-19 01:21:53 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556427 - dlt_load - STEP_OUTPUT - Yielded output "dlt_source_customers" of type "Nothing". (Type check passed).
+[32m2025-10-19 01:21:54 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556427 - dlt_load - ASSET_MATERIALIZATION - Materialized value dlt_source_customers.
+[32m2025-10-19 01:21:54 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556427 - dlt_load - STEP_OUTPUT - Yielded output "dlt_source_locations" of type "Nothing". (Type check passed).
+[32m2025-10-19 01:21:54 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556427 - dlt_load - ASSET_MATERIALIZATION - Materialized value dlt_source_locations.
+[32m2025-10-19 01:21:54 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556427 - dlt_load - STEP_SUCCESS - Finished execution of step "dlt_load" in 4.04s.

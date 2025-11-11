@@ -1,0 +1,748 @@
+2025-11-10 18:51:21,114 | [INFO] | 🚀 Starting DLT load_data.py initialization...
+2025-11-10 18:51:21,115 | [INFO] | ✅ Using connection string: postgresql://db_user:MakinaAdmin123@213.199.60.13:5432/main_db
+2025-11-10 18:51:21,116 | [INFO] | 📂 Data directory: /home/makina/ETL/data_extraction/Data
+2025-11-10 18:51:21,116 | [INFO] | 📂 fact_db folder: /home/makina/ETL/data_extraction/Data/fact_db
+2025-11-10 18:51:21,116 | [INFO] | 📂 customer folder: /home/makina/ETL/data_extraction/Data/customer
+2025-11-10 18:51:21,116 | [INFO] | 📂 location folder: /home/makina/ETL/data_extraction/Data/location
+2025-11-10 18:51:21,947 | [INFO] | 🧹 DLT staging truncation enabled.
+2025-11-10 18:51:21,954 | [INFO] | 🚀 Starting DLT pipeline execution (manual mode)...
+2025-11-10 18:51:22,333 | [INFO] | 🔗 Combining all DLT resources into a single source...
+2025-11-10 18:51:22,684 | [INFO] | 📊 Loading loans data from CSVs...
+2025-11-10 18:51:26,195 | [INFO] | ✅ Loans data loaded: 959842 records
+2025-11-10 18:51:43,153 | [INFO] | 📊 Loading customers data from CSVs...
+2025-11-10 18:51:46,394 | [INFO] | ✅ Customers data loaded: 1000000 records
+2025-11-10 18:52:02,318 | [INFO] | 📊 Loading location data from CSVs...
+2025-11-10 18:52:02,634 | [INFO] | ✅ Location data loaded: 10 records
+2025-11-10 18:59:44,199 | [INFO] | ✅ Pipeline completed successfully: Pipeline loans_pipeline load step completed in 56.95 seconds
+1 load package(s) were loaded to destination postgres and into dataset staging
+The postgres destination used postgresql://db_user:***@213.199.60.13:5432/main_db location to store data
+Load package 1762797082.6784947 is LOADED and contains no failed jobs
+2025-11-10 20:23:25,888 | [INFO] | 🚀 Starting DLT load_data.py initialization...
+2025-11-10 20:23:25,892 | [INFO] | ✅ Using connection string: postgresql://db_user:MakinaAdmin123@213.199.60.13:5432/main_db
+2025-11-10 20:23:25,893 | [INFO] | 📂 Data directory: /home/makina/ETL/data_extraction/Data
+2025-11-10 20:23:25,893 | [INFO] | 📂 fact_db folder: /home/makina/ETL/data_extraction/Data/fact_db
+2025-11-10 20:23:25,893 | [INFO] | 📂 customer folder: /home/makina/ETL/data_extraction/Data/customer
+2025-11-10 20:23:25,893 | [INFO] | 📂 location folder: /home/makina/ETL/data_extraction/Data/location
+2025-11-10 20:23:26,594 | [INFO] | 🧹 DLT staging truncation enabled.
+2025-11-10 20:35:24,084 | [INFO] | 🚀 Starting DLT load_data.py initialization...
+2025-11-10 20:35:24,085 | [INFO] | ✅ Using connection string: postgresql://db_user:MakinaAdmin123@213.199.60.13:5432/main_db
+2025-11-10 20:35:24,085 | [INFO] | 📂 Data directory: /home/makina/ETL/data_extraction/Data
+2025-11-10 20:35:24,085 | [INFO] | 📂 fact_db folder: /home/makina/ETL/data_extraction/Data/fact_db
+2025-11-10 20:35:24,085 | [INFO] | 📂 customer folder: /home/makina/ETL/data_extraction/Data/customer
+2025-11-10 20:35:24,085 | [INFO] | 📂 location folder: /home/makina/ETL/data_extraction/Data/location
+2025-11-10 20:35:24,394 | [INFO] | 🧹 DLT staging truncation enabled.
+2025-11-10 20:35:24,399 | [INFO] | 🚀 Starting DLT pipeline execution (manual mode)...
+2025-11-10 20:35:24,773 | [INFO] | 🔗 Combining all DLT resources into a single source...
+2025-11-10 20:35:25,064 | [INFO] | 📊 Loading loans data from CSVs in 1000-row chunks...
+2025-11-10 20:35:25,065 | [INFO] | ➡️ Processing file: fact_loans_4.csv
+2025-11-10 20:35:25,158 | [ERROR] | ❌ Error while reading loans data: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+Traceback (most recent call last):
+  File "/home/makina/ETL/data_extraction/load_data.py", line 160, in loans
+    for chunk_df in con.sql(query).fetch_record_batches():
+                    ^^^^^^^^^^^^^^
+_duckdb.BinderException: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+
+2025-11-10 20:35:25,196 | [ERROR] | ❌ Pipeline execution failed: Pipeline execution failed at `step=extract` when processing package with `load_id=1762803325.0578206` with exception:
+
+<class 'dlt.extract.exceptions.ResourceExtractionError'>
+In processing pipe `loans`: extraction of resource `loans` in `generator` `loans` caused an exception: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+Traceback (most recent call last):
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/extract/pipe_iterator.py", line 274, in _get_source_item
+    pipe_item = next(gen)
+                ^^^^^^^^^
+  File "/home/makina/ETL/data_extraction/load_data.py", line 160, in loans
+    for chunk_df in con.sql(query).fetch_record_batches():
+                    ^^^^^^^^^^^^^^
+_duckdb.BinderException: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 472, in extract
+    self._extract_source(
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 1314, in _extract_source
+    load_id = extract.extract(
+              ^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/extract/extract.py", line 479, in extract
+    self._extract_single_source(
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/extract/extract.py", line 397, in _extract_single_source
+    for pipe_item in pipes:
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/extract/pipe_iterator.py", line 158, in __next__
+    pipe_item = self._get_source_item()
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/extract/pipe_iterator.py", line 304, in _get_source_item
+    raise ResourceExtractionError(pipe.name, gen, str(ex), "generator") from ex
+dlt.extract.exceptions.ResourceExtractionError: In processing pipe `loans`: extraction of resource `loans` in `generator` `loans` caused an exception: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/makina/ETL/data_extraction/load_data.py", line 231, in <module>
+    info = pipeline.run(source())
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 223, in _wrap
+    step_info = f(self, *args, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 272, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 726, in run
+    self.extract(
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 223, in _wrap
+    step_info = f(self, *args, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 177, in _wrap
+    rv = f(self, *args, **kwargs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 163, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 272, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 493, in extract
+    raise PipelineStepFailed(
+dlt.pipeline.exceptions.PipelineStepFailed: Pipeline execution failed at `step=extract` when processing package with `load_id=1762803325.0578206` with exception:
+
+<class 'dlt.extract.exceptions.ResourceExtractionError'>
+In processing pipe `loans`: extraction of resource `loans` in `generator` `loans` caused an exception: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+
+2025-11-10 20:36:17,093 | [INFO] | 🚀 Starting DLT load_data.py initialization...
+2025-11-10 20:36:17,094 | [INFO] | ✅ Using connection string: postgresql://db_user:MakinaAdmin123@213.199.60.13:5432/main_db
+2025-11-10 20:36:17,095 | [INFO] | 📂 Data directory: /home/makina/ETL/data_extraction/Data
+2025-11-10 20:36:17,095 | [INFO] | 📂 fact_db folder: /home/makina/ETL/data_extraction/Data/fact_db
+2025-11-10 20:36:17,095 | [INFO] | 📂 customer folder: /home/makina/ETL/data_extraction/Data/customer
+2025-11-10 20:36:17,095 | [INFO] | 📂 location folder: /home/makina/ETL/data_extraction/Data/location
+2025-11-10 20:36:17,419 | [INFO] | 🧹 DLT staging truncation enabled.
+2025-11-10 20:36:17,424 | [INFO] | 🚀 Starting DLT pipeline execution (manual mode)...
+2025-11-10 20:36:17,641 | [INFO] | 🔗 Combining all DLT resources into a single source...
+2025-11-10 20:36:17,803 | [INFO] | 📊 Loading loans data from CSVs in 1000-row chunks...
+2025-11-10 20:36:17,804 | [INFO] | ➡️ Processing file: fact_loans_4.csv
+2025-11-10 20:36:17,828 | [ERROR] | ❌ Error while reading loans data: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+Traceback (most recent call last):
+  File "/home/makina/ETL/data_extraction/load_data.py", line 160, in loans
+    for chunk_df in con.sql(query).fetch_record_batches():
+                    ^^^^^^^^^^^^^^
+_duckdb.BinderException: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+
+2025-11-10 20:36:17,855 | [ERROR] | ❌ Pipeline execution failed: Pipeline execution failed at `step=extract` when processing package with `load_id=1762803377.7973008` with exception:
+
+<class 'dlt.extract.exceptions.ResourceExtractionError'>
+In processing pipe `loans`: extraction of resource `loans` in `generator` `loans` caused an exception: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+Traceback (most recent call last):
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/extract/pipe_iterator.py", line 274, in _get_source_item
+    pipe_item = next(gen)
+                ^^^^^^^^^
+  File "/home/makina/ETL/data_extraction/load_data.py", line 160, in loans
+    for chunk_df in con.sql(query).fetch_record_batches():
+                    ^^^^^^^^^^^^^^
+_duckdb.BinderException: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 472, in extract
+    self._extract_source(
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 1314, in _extract_source
+    load_id = extract.extract(
+              ^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/extract/extract.py", line 479, in extract
+    self._extract_single_source(
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/extract/extract.py", line 397, in _extract_single_source
+    for pipe_item in pipes:
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/extract/pipe_iterator.py", line 158, in __next__
+    pipe_item = self._get_source_item()
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/extract/pipe_iterator.py", line 304, in _get_source_item
+    raise ResourceExtractionError(pipe.name, gen, str(ex), "generator") from ex
+dlt.extract.exceptions.ResourceExtractionError: In processing pipe `loans`: extraction of resource `loans` in `generator` `loans` caused an exception: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/makina/ETL/data_extraction/load_data.py", line 231, in <module>
+    info = pipeline.run(source())
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 223, in _wrap
+    step_info = f(self, *args, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 272, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 726, in run
+    self.extract(
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 223, in _wrap
+    step_info = f(self, *args, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 177, in _wrap
+    rv = f(self, *args, **kwargs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 163, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 272, in _wrap
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/makina/ETL/.venv/lib/python3.12/site-packages/dlt/pipeline/pipeline.py", line 493, in extract
+    raise PipelineStepFailed(
+dlt.pipeline.exceptions.PipelineStepFailed: Pipeline execution failed at `step=extract` when processing package with `load_id=1762803377.7973008` with exception:
+
+<class 'dlt.extract.exceptions.ResourceExtractionError'>
+In processing pipe `loans`: extraction of resource `loans` in `generator` `loans` caused an exception: Binder Error: Invalid named parameter "chunk_size" for function read_csv_auto
+Candidates:
+    all_varchar BOOLEAN
+    allow_quoted_nulls BOOLEAN
+    auto_detect BOOLEAN
+    auto_type_candidates ANY
+    buffer_size UBIGINT
+    column_names VARCHAR[]
+    column_types ANY
+    columns ANY
+    comment VARCHAR
+    compression VARCHAR
+    dateformat VARCHAR
+    decimal_separator VARCHAR
+    delim VARCHAR
+    dtypes ANY
+    encoding VARCHAR
+    escape VARCHAR
+    filename ANY
+    files_to_sniff BIGINT
+    force_not_null VARCHAR[]
+    header BOOLEAN
+    hive_partitioning BOOLEAN
+    hive_types ANY
+    hive_types_autocast BOOLEAN
+    ignore_errors BOOLEAN
+    max_line_size VARCHAR
+    maximum_line_size VARCHAR
+    names VARCHAR[]
+    new_line VARCHAR
+    normalize_names BOOLEAN
+    null_padding BOOLEAN
+    nullstr ANY
+    parallel BOOLEAN
+    quote VARCHAR
+    rejects_limit BIGINT
+    rejects_scan VARCHAR
+    rejects_table VARCHAR
+    sample_size BIGINT
+    sep VARCHAR
+    skip BIGINT
+    store_rejects BOOLEAN
+    strict_mode BOOLEAN
+    thousands VARCHAR
+    timestampformat VARCHAR
+    types ANY
+    union_by_name BOOLEAN
+

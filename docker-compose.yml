@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  dwh_pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile.dwh
+    container_name: dwh_pipeline
+    env_file:
+      - .env
+    environment:
+      CREDENTIALS__CONNECTION_STRING: ${POSTGRES_CONNECTION_STRING}
+      DBT_HOST: ${DBT_HOST}
+      DBT_USER: ${DBT_USER}
+      DBT_PASSWORD: ${DBT_PASSWORD}
+      DBT_PORT: ${DBT_PORT}
+      DBT_DBNAME: ${DBT_DBNAME}
+      DBT_SCHEMA: ${DBT_SCHEMA}
+    expose:
+      - 3001
+    depends_on:
+      - postgres_etl
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dwh-pipeline.rule=Host(`elt.zamdatalabs.com`)"
+      - "traefik.http.routers.dwh-pipeline.entrypoints=websecure"
+      - "traefik.http.routers.dwh-pipeline.tls.certresolver=letsencrypt"
+      - "traefik.http.services.dwh-pipeline.loadbalancer.server.port=3001"
+      - "traefik.http.middlewares.dwh-pipeline-auth.basicauth.users=${TRAEFIK_BASIC_AUTH}"
+      - "traefik.http.routers.dwh-pipeline.middlewares=dwh-pipeline-auth@docker"
+      - "traefik.http.routers.dwh-pipeline-redirect.entrypoints=web"
+      - "traefik.http.routers.dwh-pipeline-redirect.rule=Host(`elt.zamdatalabs.com`)"
+      - "traefik.http.routers.dwh-pipeline-redirect.middlewares=redirect-to-https@docker"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+
+  postgres_etl:
+    image: postgres:latest
+    container_name: postgres_etl
+    environment:
+      POSTGRES_USER: ${DBT_USER}
+      POSTGRES_DB: ${DBT_DBNAME}
+      POSTGRES_PASSWORD: ${DBT_PASSWORD}
+    volumes:
+      - etl_pgdata:/var/lib/postgresql/data
+    networks:
+      - dokploy-network
+
+volumes:
+  etl_pgdata:
+
+networks:
+  dokploy-network:
+    external: true

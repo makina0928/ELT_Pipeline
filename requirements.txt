@@ -1,0 +1,13 @@
+requests
+dlt[postgres,duckdb]
+psycopg2-binary
+dbt-core
+dbt-postgres
+dbt-duckdb
+streamlit
+dagster-dlt
+dagster-duckdb
+dagster-dbt
+dagster-webserver
+python-dotenv
+gunicorn

@@ -1,0 +1,37 @@
+name: 'postgres_dbt'
+version: '1.0.0'
+profile: 'postgres_dbt'
+
+# Where to install dbt packages
+packages-install-path: dbt_packages
+
+# File paths
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Model configurations
+models:
+  postgres_dbt:
+    src:
+      +schema: transformed
+      +materialized: ephemeral
+
+    dim:
+      +schema: transformed
+      +materialized: table
+
+    fct:
+      +schema: transformed
+      +materialized: table
+
+    marts:
+      +schema: analytics
+      +materialized: table

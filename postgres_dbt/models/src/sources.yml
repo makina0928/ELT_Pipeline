@@ -1,0 +1,41 @@
+# sources:
+#   - name: portfolio_data        # custom choice name
+#     schema: staging             # this matches the schema created by DLT in PostgreSQL
+#     description: "Raw data ingested from DLT pipeline containing customer, loans, and branch tables."
+#     tables:
+#       - name: customers
+#         description: "Raw customer-level information."
+#       - name: loans
+#         description: "Raw loan-level portfolio data."
+#       - name: location
+#         description: "Raw location and relationship manager data."
+
+#     # tables:
+#     #   - name: stg_ads
+#     #     identifier: technical_field_job_ads
+#         meta:
+#           dagster:
+#             asset_key: ['dlt_loans_source_']
+
+sources:
+  - name: portfolio_data
+    schema: staging
+    description: "Raw data ingested from DLT pipeline containing customers, loans, and location tables."
+    tables:
+      - name: customers
+        description: "Raw customer-level information."
+        meta:
+          dagster:
+            asset_key: ["dlt_source_customers"]
+
+      - name: loans
+        description: "Raw loan-level portfolio data."
+        meta:
+          dagster:
+            asset_key: ["dlt_source_loans"]
+
+      - name: location
+        description: "Raw location and relationship manager data."
+        meta:
+          dagster:
+            asset_key: ["dlt_source_locations"]

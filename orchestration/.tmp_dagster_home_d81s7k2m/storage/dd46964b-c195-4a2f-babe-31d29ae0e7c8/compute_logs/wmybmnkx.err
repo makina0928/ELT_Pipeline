@@ -1,0 +1,33 @@
+[32m2025-10-19 01:21:49 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - LOGS_CAPTURED - Started capturing logs in process (pid: 1556426).
+[32m2025-10-19 01:21:49 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - STEP_START - Started execution of step "dbt_models".
+[32m2025-10-19 01:21:50 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - dbt_models - A dbt subsetted execution is not being performed. Using the default dbt selection arguments `['--select', 'fqn:*']`.
+[32m2025-10-19 01:21:53 +0200[0m - dagster - [34mWARNING[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - dbt_models - An error was encountered when creating a handle to the dbt adapter in Dagster.
+Traceback (most recent call last):
+  File "/root/ETL/.venv/lib/python3.10/site-packages/dagster_dbt/core/resource.py", line 697, in cli
+    adapter = self._initialize_dbt_core_adapter(args)
+  File "/root/ETL/.venv/lib/python3.10/site-packages/dagster_dbt/core/resource.py", line 381, in _initialize_dbt_core_adapter
+    profile = load_profile(self.project_dir, cli_vars, self.profile, self.target)
+  File "/root/ETL/.venv/lib/python3.10/site-packages/dbt/config/runtime.py", line 78, in load_profile
+    profile = Profile.render(
+  File "/root/ETL/.venv/lib/python3.10/site-packages/dbt/config/profile.py", line 402, in render
+    return cls.from_raw_profiles(
+  File "/root/ETL/.venv/lib/python3.10/site-packages/dbt/config/profile.py", line 359, in from_raw_profiles
+    raise DbtProjectError("Could not find profile named '{}'".format(profile_name))
+dbt.exceptions.DbtProjectError: Runtime Error
+  Could not find profile named 'postgres_dbt'
+[32m2025-10-19 01:21:53 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - dbt_models - Copying `/root/ETL/postgres_dbt/target/partial_parse.msgpack` to `/root/ETL/postgres_dbt/target/dbt_models-dd46964-936119e/partial_parse.msgpack` to take advantage of partial parsing.
+[32m2025-10-19 01:21:53 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - dbt_models - Running dbt command: `dbt build --select fqn:*`.
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - STEP_OUTPUT - Yielded output "transformed__location" of type "Nothing". (Type check passed).
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - ASSET_MATERIALIZATION - Materialized value transformed location.
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - STEP_OUTPUT - Yielded output "transformed__customers" of type "Nothing". (Type check passed).
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - ASSET_MATERIALIZATION - Materialized value transformed customers.
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - STEP_OUTPUT - Yielded output "transformed__fact_tables" of type "Nothing". (Type check passed).
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - ASSET_MATERIALIZATION - Materialized value transformed fact_tables.
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - STEP_OUTPUT - Yielded output "analytics__marts_customer" of type "Nothing". (Type check passed).
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - ASSET_MATERIALIZATION - Materialized value analytics marts_customer.
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - STEP_OUTPUT - Yielded output "analytics__marts_location" of type "Nothing". (Type check passed).
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - ASSET_MATERIALIZATION - Materialized value analytics marts_location.
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - STEP_OUTPUT - Yielded output "analytics__marts_portfolio" of type "Nothing". (Type check passed).
+[32m2025-10-19 01:21:58 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - ASSET_MATERIALIZATION - Materialized value analytics marts_portfolio.
+[32m2025-10-19 01:21:59 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - dbt_models - Finished dbt command: `dbt build --select fqn:*`.
+[32m2025-10-19 01:21:59 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - dd46964b-c195-4a2f-babe-31d29ae0e7c8 - 1556426 - dbt_models - STEP_SUCCESS - Finished execution of step "dbt_models" in 9.29s.
