@@ -54,39 +54,4 @@ networks:
   dokploy-network:
     external: true
 
-
-
-# services:
-#   dwh_pipeline:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile.dwh
-#     env_file:
-#       - .env
-#     environment:
-#       CREDENTIALS__CONNECTION_STRING: ${POSTGRES_CONNECTION_STRING}
-#       DBT_HOST: ${DBT_HOST}
-#       DBT_USER: ${DBT_USER}
-#       DBT_PASSWORD: ${DBT_PASSWORD}
-#       DBT_PORT: ${DBT_PORT}
-#       DBT_DBNAME: ${DBT_DBNAME}
-#       DBT_SCHEMA: ${DBT_SCHEMA}
-#     volumes:
-#       - ./data_extraction/Data:/pipeline/data_extraction/Data:ro
-#     ports:
-#       - "3001:3001"
-
-
-# services:
-#   dwh_pipeline:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile.dwh
-#     env_file:
-#       - .env
-#     environment:
-#       CREDENTIALS__CONNECTION_STRING: ${POSTGRES_CONNECTION_STRING}
-#     volumes:
-#       - ${HOME}/.dbt:/root/.dbt:ro
-#     ports:
-#       - "3001:3001"
+# force rebuild
