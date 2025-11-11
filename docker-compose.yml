@@ -27,8 +27,8 @@ services:
       - "traefik.http.routers.dwh-pipeline.tls.certresolver=letsencrypt"
       - "traefik.http.services.dwh-pipeline.loadbalancer.server.port=3001"
         # Auth (forces browser popup)
-      - "traefik.http.middlewares.dwh-pipeline-auth.basicauth.users=\"${TRAEFIK_BASIC_AUTH}\""
-      - "traefik.http.routers.dwh-pipeline.middlewares=dwh-pipeline-auth@docker"
+      # - "traefik.http.middlewares.dwh-pipeline-auth.basicauth.users=${TRAEFIK_BASIC_AUTH}"
+      # - "traefik.http.routers.dwh-pipeline.middlewares=dwh-pipeline-auth@docker"
       # HTTP → HTTPS redirect
       - "traefik.http.routers.dwh-pipeline-redirect.entrypoints=web"
       - "traefik.http.routers.dwh-pipeline-redirect.rule=Host(`elt.zamdatalabs.com`)"
@@ -53,5 +53,3 @@ volumes:
 networks:
   dokploy-network:
     external: true
-
-# force rebuild
