@@ -7,9 +7,10 @@ FROM python:3.10-slim
 WORKDIR /pipeline
 
 # ---------------------------
-# System dependencies
+# Install system dependencies
 # ---------------------------
-# Install Git (needed by dagster-dbt), bash, and build tools for dbt packages
+# Install git, bash, and build essentials (needed by dagster-dbt and dbt-postgres)
+USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     bash \
@@ -26,22 +27,22 @@ RUN python3 -m venv /opt/venv \
     && pip install --upgrade pip \
     && pip install -r requirements.txt
 
-# Make virtual environment available in PATH
+# Ensure the virtualenv is in the PATH
 ENV PATH="/opt/venv/bin:$PATH"
 
 # ---------------------------
-# Copy project code
+# Copy your code folders
 # ---------------------------
 COPY data_extraction/ /pipeline/data_extraction/
 COPY postgres_dbt/ /pipeline/postgres_dbt/
 COPY orchestration/ /pipeline/orchestration/
 
-# Copy dbt profiles
+# Copy dbt profile to the right path
 RUN mkdir -p /root/.dbt
 COPY postgres_dbt/profiles.yml /root/.dbt/profiles.yml
 
 # ---------------------------
-# Create non-root user (security best practice)
+# Create non-root user (best practice)
 # ---------------------------
 RUN useradd -m appuser \
     && chown -R appuser:appuser /pipeline
@@ -53,6 +54,6 @@ USER appuser
 EXPOSE 3001
 
 # ---------------------------
-# Command: run Dagster in dev mode
+# Command: Run Dagster dev server
 # ---------------------------
 CMD ["dagster", "dev", "-f", "/pipeline/orchestration/definitions.py", "-h", "0.0.0.0", "-p", "3001"]
