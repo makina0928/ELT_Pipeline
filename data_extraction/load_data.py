@@ -1,7 +1,5 @@
 #========================================#
-#                                        #
 #   Load job ads from local CSV folder   #
-#                                        #
 #========================================#
 
 import dlt
@@ -35,7 +33,6 @@ pg_destination = dlt.destinations.postgres(connection_string)
 base_dir = Path(__file__).resolve().parent
 data_dir = base_dir / "Data"
 
-
 # ==================== #
 #   DLT Resources      #
 # ==================== #
@@ -54,7 +51,6 @@ def loans() -> DltResource:
 
     log.info(" Loans data loaded successfully")
 
-
 @dlt.resource(name="customers", write_disposition="replace")
 def customers() -> DltResource:
     """Stream customers data."""
@@ -68,7 +64,6 @@ def customers() -> DltResource:
         yield batch
 
     log.info(" Customers data loaded successfully")
-
 
 @dlt.resource(name="locations", write_disposition="replace")
 def locations() -> DltResource:
@@ -84,12 +79,10 @@ def locations() -> DltResource:
 
     log.info(" Locations data loaded successfully")
 
-
 @dlt.source
 def source():
     log.info(" Combining all DLT resources (loans, customers, locations)...")
     return [loans(), customers(), locations()]
-
 
 # ==================== #
 #   Pipeline Runner    #
