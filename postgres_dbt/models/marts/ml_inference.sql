@@ -7,26 +7,39 @@
 
 WITH inference AS (
     SELECT
-        sur_customer_id,
-        loan_id,
-        loan_product,
-        disbursement_date,
-        disbursed_amt,
-        outstanding_bal,
-        interest_rate,
-        gender,
-        marital_status,
-        employment_status,
-        income_bracket,
-        region,
-        branch_type,
-        disbursement_month,
-        disbursement_year
-    FROM {{ ref('analytics') }}
+        -- Updated IDs (match the analytics model)
+        f.fact_customer_id,
+        f.dim_customer_id,
+        f.fact_branch_id,
+        f.dim_branch_id,
+
+        -- Loan details
+        f.loan_id,
+        f.loan_product,
+        f.disbursement_date,
+        f.disbursed_amt,
+        f.outstanding_bal,
+        f.interest_rate,
+
+        --  Customer attributes
+        f.gender,
+        f.marital_status,
+        f.employment_status,
+        f.income_bracket,
+
+        -- Branch attributes
+        f.region,
+        f.branch_type,
+
+        -- Derived date columns
+        f.disbursement_month,
+        f.disbursement_year
+
+    FROM {{ ref('analytics') }} AS f
     WHERE
-        disbursement_date BETWEEN '{{ inference_month_start }}' AND '{{ inference_month_end }}'
+        f.disbursement_date BETWEEN '{{ inference_month_start }}' AND '{{ inference_month_end }}'
         -- Exclude any loans already defaulted (we only want active/new)
-        AND default_status = 0
+        AND f.default_status = 0
 )
 
 SELECT *

@@ -4,38 +4,50 @@
 
 WITH training AS (
     SELECT
-        sur_customer_id,
-        loan_id,
-        loan_product,
-        disbursement_date,
-        disbursed_amt,
-        outstanding_bal,
-        interest_rate,
-        gender,
-        marital_status,
-        employment_status,
-        income_bracket,
-        region,
-        branch_type,
-        days_late,
-        par_0,
-        par_30,
-        par_60,
-        par_90,
-        default_status AS target_default,
-        disbursement_month,
-        disbursement_year
-    FROM {{ ref('analytics') }}
+        -- Updated ID columns for consistency
+        f.fact_customer_id,
+        f.dim_customer_id,
+        f.fact_branch_id,
+        f.dim_branch_id,
+
+        -- Loan details
+        f.loan_id,
+        f.loan_product,
+        f.disbursement_date,
+        f.disbursed_amt,
+        f.outstanding_bal,
+        f.interest_rate,
+
+        -- Customer attributes
+        f.gender,
+        f.marital_status,
+        f.employment_status,
+        f.income_bracket,
+
+        -- Branch attributes
+        f.region,
+        f.branch_type,
+
+        -- Loan performance metrics (features)
+        f.days_late,
+        f.par_0,
+        f.par_30,
+        f.par_60,
+        f.par_90,
+
+        -- Target variable (label)
+        f.default_status AS target_default,
+
+        -- Derived date fields
+        f.disbursement_month,
+        f.disbursement_year
+
+    FROM {{ ref('analytics') }} AS f
     WHERE
-        disbursement_date BETWEEN '{{ train_start }}' AND '{{ train_end }}'
-        AND disbursement_date <= CURRENT_DATE - INTERVAL '{{ observation_window_months }} months'
+        f.disbursement_date BETWEEN '{{ train_start }}' AND '{{ train_end }}'
+        -- Ensure at least full observation period before today
+        AND f.disbursement_date <= CURRENT_DATE - INTERVAL '{{ observation_window_months }} months'
 )
 
 SELECT *
 FROM training
-
--- “Give me all loans disbursed between Jan 2022 and Dec 2024,
--- but only if they are at least 6 months old as of today’s date.”
--- WHERE
---     disbursement_date BETWEEN '2022-01-01' AND '2024-12-31'
---     AND disbursement_date <= CURRENT_DATE - INTERVAL '6 months'

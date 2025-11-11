@@ -4,14 +4,14 @@ with customers as (
 )
 
 select
-    -- Convert customer ID to uppercase, ensure consistent format
-    upper(trim(customer_id)) as customer_id,
+    -- Convert customer ID to lowercase, ensure consistent format
+    TRIM(UPPER(customer_id)) as customer_id,
     
     -- Clean and standardize customer name
     initcap(trim(customer_name)) as customer_name,
     
     -- Normalize gender
-    upper(trim(gender)) as gender,
+    TRIM(UPPER(gender)) as gender,
 
     -- standardize date of birth
     CASE
@@ -21,14 +21,14 @@ select
     END AS dob,
 
     -- Clean and standardize categorical fields
-    initcap(trim(marital_status)) as marital_status,
-    initcap(trim(employment_status)) as employment_status,
+    trim(initcap(marital_status)) as marital_status,
+    trim(initcap(employment_status)) as employment_status,
     
     -- Normalize income bracket
     trim(income_bracket) as income_bracket,
     
     -- Format region names uniformly
-    initcap(trim(region)) as region,
+    trim(initcap(region)) as region,
     
     -- Cast credit score to integer
     cast(credit_score as int) as credit_score

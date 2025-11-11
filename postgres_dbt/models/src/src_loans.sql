@@ -1,10 +1,10 @@
 with loans as (select * from {{ source('portfolio_data', 'loans') }})
 
 SELECT
-    CAST(loan_id AS VARCHAR) AS loan_id,
-    CAST(customer_id AS VARCHAR) AS customer_id,
-    CAST(branch_id AS VARCHAR) AS branch_id,
-    CAST(loan_product AS VARCHAR) AS loan_product,
+    TRIM(UPPER(loan_id)) AS loan_id,
+    TRIM(UPPER(customer_id)) AS customer_id,
+    TRIM(UPPER(branch_id)) AS branch_id,
+    trim(initcap(loan_product)) AS loan_product,
 
     CASE
         WHEN disbursement_date::text ~ '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
