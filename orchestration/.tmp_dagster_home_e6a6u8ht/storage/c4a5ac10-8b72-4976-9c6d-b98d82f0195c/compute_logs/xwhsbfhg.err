@@ -1,0 +1,21 @@
+2025-11-12 22:25:29 +0000 - dagster - DEBUG - __ASSET_JOB - c4a5ac10-8b72-4976-9c6d-b98d82f0195c - 1528 - LOGS_CAPTURED - Started capturing logs in process (pid: 1528).
+2025-11-12 22:25:29 +0000 - dagster - DEBUG - __ASSET_JOB - c4a5ac10-8b72-4976-9c6d-b98d82f0195c - 1528 - dlt_load - STEP_START - Started execution of step "dlt_load".
+2025-11-12 22:25:29,751 | [INFO] | Context impl SQLiteImpl.
+2025-11-12 22:25:29,752 | [INFO] | Will assume non-transactional DDL.
+2025-11-12 22:25:29,917 | [INFO] |  [DLT] Starting pipeline execution through Dagster...
+2025-11-12 22:25:41,228|[WARNING]|1528|128281384881024|dlt|validate.py|verify_normalized_table:91|In schema `source`: The following columns in table 'loans' did not receive any data during this load and therefore could not have their types inferred:
+  - column12
+
+Unless type hints are provided, these columns will not be materialized in the destination.
+One way to provide type hints is to use the 'columns' argument in the '@dlt.resource' decorator.  For example:
+
+@dlt.resource(columns={'column12': {'data_type': 'text'}})
+
+2025-11-12 22:25:42 +0000 - dagster - DEBUG - __ASSET_JOB - c4a5ac10-8b72-4976-9c6d-b98d82f0195c - 1528 - dlt_load - STEP_OUTPUT - Yielded output "dlt_source_loans" of type "Nothing". (Type check passed).
+2025-11-12 22:25:42 +0000 - dagster - DEBUG - __ASSET_JOB - c4a5ac10-8b72-4976-9c6d-b98d82f0195c - 1528 - dlt_load - ASSET_MATERIALIZATION - Materialized value dlt_source_loans.
+2025-11-12 22:25:42 +0000 - dagster - DEBUG - __ASSET_JOB - c4a5ac10-8b72-4976-9c6d-b98d82f0195c - 1528 - dlt_load - STEP_OUTPUT - Yielded output "dlt_source_customers" of type "Nothing". (Type check passed).
+2025-11-12 22:25:42 +0000 - dagster - DEBUG - __ASSET_JOB - c4a5ac10-8b72-4976-9c6d-b98d82f0195c - 1528 - dlt_load - ASSET_MATERIALIZATION - Materialized value dlt_source_customers.
+2025-11-12 22:25:42 +0000 - dagster - DEBUG - __ASSET_JOB - c4a5ac10-8b72-4976-9c6d-b98d82f0195c - 1528 - dlt_load - STEP_OUTPUT - Yielded output "dlt_source_locations" of type "Nothing". (Type check passed).
+2025-11-12 22:25:42 +0000 - dagster - DEBUG - __ASSET_JOB - c4a5ac10-8b72-4976-9c6d-b98d82f0195c - 1528 - dlt_load - ASSET_MATERIALIZATION - Materialized value dlt_source_locations.
+2025-11-12 22:25:42,791 | [INFO] |  [DLT] Pipeline completed successfully via Dagster.
+2025-11-12 22:25:42 +0000 - dagster - DEBUG - __ASSET_JOB - c4a5ac10-8b72-4976-9c6d-b98d82f0195c - 1528 - dlt_load - STEP_SUCCESS - Finished execution of step "dlt_load" in 13.06s.

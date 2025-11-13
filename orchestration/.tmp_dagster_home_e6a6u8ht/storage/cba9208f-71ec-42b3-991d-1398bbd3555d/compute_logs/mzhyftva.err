@@ -1,0 +1,29 @@
+2025-11-12 22:55:51 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - LOGS_CAPTURED - Started capturing logs in process (pid: 30363).
+2025-11-12 22:55:51 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - STEP_START - Started execution of step "dbt_models".
+2025-11-12 22:55:51,690 | [INFO] | Context impl SQLiteImpl.
+2025-11-12 22:55:51,691 | [INFO] | Will assume non-transactional DDL.
+2025-11-12 22:55:51,769 | [INFO] |  [DBT] Running dbt build...
+2025-11-12 22:55:51 +0000 - dagster - INFO - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - dbt_models - A dbt subsetted execution is not being performed. Using the default dbt selection arguments `['--select', 'fqn:*']`.
+2025-11-12 22:55:51,770 | [INFO] | __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - dbt_models - A dbt subsetted execution is not being performed. Using the default dbt selection arguments `['--select', 'fqn:*']`.
+2025-11-12 22:55:56 +0000 - dagster - INFO - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - dbt_models - Copying `/pipeline/postgres_dbt/target/partial_parse.msgpack` to `/pipeline/postgres_dbt/target/dbt_models-cba9208-412c734/partial_parse.msgpack` to take advantage of partial parsing.
+2025-11-12 22:55:56,561 | [INFO] | __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - dbt_models - Copying `/pipeline/postgres_dbt/target/partial_parse.msgpack` to `/pipeline/postgres_dbt/target/dbt_models-cba9208-412c734/partial_parse.msgpack` to take advantage of partial parsing.
+2025-11-12 22:55:56 +0000 - dagster - INFO - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - dbt_models - Running dbt command: `dbt build --select fqn:*`.
+2025-11-12 22:55:56,580 | [INFO] | __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - dbt_models - Running dbt command: `dbt build --select fqn:*`.
+2025-11-12 22:56:02 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - STEP_OUTPUT - Yielded output "transformed__location" of type "Nothing". (Type check passed).
+2025-11-12 22:56:03 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - ASSET_MATERIALIZATION - Materialized value transformed location.
+2025-11-12 22:56:03 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - STEP_OUTPUT - Yielded output "transformed__fact_tables" of type "Nothing". (Type check passed).
+2025-11-12 22:56:03 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - ASSET_MATERIALIZATION - Materialized value transformed fact_tables.
+2025-11-12 22:56:03 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - STEP_OUTPUT - Yielded output "transformed__customers" of type "Nothing". (Type check passed).
+2025-11-12 22:56:03 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - ASSET_MATERIALIZATION - Materialized value transformed customers.
+2025-11-12 22:56:03 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - STEP_OUTPUT - Yielded output "analytics__analytics" of type "Nothing". (Type check passed).
+2025-11-12 22:56:04 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - ASSET_MATERIALIZATION - Materialized value analytics analytics.
+2025-11-12 22:56:04 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - STEP_OUTPUT - Yielded output "analytics__ml_inference" of type "Nothing". (Type check passed).
+2025-11-12 22:56:04 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - ASSET_MATERIALIZATION - Materialized value analytics ml_inference.
+2025-11-12 22:56:04 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - STEP_OUTPUT - Yielded output "analytics__ml_testing" of type "Nothing". (Type check passed).
+2025-11-12 22:56:05 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - ASSET_MATERIALIZATION - Materialized value analytics ml_testing.
+2025-11-12 22:56:05 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - STEP_OUTPUT - Yielded output "analytics__ml_training" of type "Nothing". (Type check passed).
+2025-11-12 22:56:05 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - ASSET_MATERIALIZATION - Materialized value analytics ml_training.
+2025-11-12 22:56:05 +0000 - dagster - INFO - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - dbt_models - Finished dbt command: `dbt build --select fqn:*`.
+2025-11-12 22:56:05,608 | [INFO] | __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - dbt_models - Finished dbt command: `dbt build --select fqn:*`.
+2025-11-12 22:56:05,629 | [INFO] |  [DBT] dbt build completed successfully.
+2025-11-12 22:56:05 +0000 - dagster - DEBUG - __ASSET_JOB - cba9208f-71ec-42b3-991d-1398bbd3555d - 30363 - dbt_models - STEP_SUCCESS - Finished execution of step "dbt_models" in 13.94s.

@@ -1,0 +1,26 @@
+Running with dbt=1.10.15
+Registered adapter: postgres=1.9.1
+Found 10 models, 3 sources, 566 macros
+
+Concurrency: 4 threads (target='dev')
+
+1 of 7 START sql table model transformed.location .............................. [RUN]
+2 of 7 START sql table model transformed.customers ............................. [RUN]
+3 of 7 START sql table model transformed.fact_tables ........................... [RUN]
+1 of 7 OK created sql table model transformed.location ......................... [[32mSELECT 10[0m in 0.54s]
+3 of 7 OK created sql table model transformed.fact_tables ...................... [[32mSELECT 9770[0m in 0.61s]
+2 of 7 OK created sql table model transformed.customers ........................ [[32mSELECT 21363[0m in 0.68s]
+4 of 7 START sql table model analytics.analytics ............................... [RUN]
+4 of 7 OK created sql table model analytics.analytics .......................... [[32mSELECT 9770[0m in 1.35s]
+5 of 7 START sql table model analytics.ml_inference ............................ [RUN]
+6 of 7 START sql table model analytics.ml_testing .............................. [RUN]
+7 of 7 START sql table model analytics.ml_training ............................. [RUN]
+7 of 7 OK created sql table model analytics.ml_training ........................ [[32mSELECT 5947[0m in 0.46s]
+6 of 7 OK created sql table model analytics.ml_testing ......................... [[32mSELECT 714[0m in 0.49s]
+5 of 7 OK created sql table model analytics.ml_inference ....................... [[32mSELECT 30[0m in 0.52s]
+
+Finished running 7 table models in 0 hours 0 minutes and 3.14 seconds (3.14s).
+
+[32mCompleted successfully[0m
+
+Done. PASS=7 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=7

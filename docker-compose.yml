@@ -14,6 +14,27 @@ services:
       DBT_PORT: ${DBT_PORT}
       DBT_DBNAME: ${DBT_DBNAME}
       DBT_SCHEMA: ${DBT_SCHEMA}
+    volumes:
+      # Existing data mount
+      - ./data_extraction/Data:/pipeline/data_extraction/Data
+
+      # Additional volumes for runtime editing and live data
+      - ./data_extraction:/pipeline/data_extraction
+      - ./postgres_dbt:/pipeline/postgres_dbt
+      - ./orchestration:/pipeline/orchestration
+
+      # Mount dbt profile directly 
+      - ./postgres_dbt/profiles.yml:/root/.dbt/profiles.yml
+
+      # Mount global data directory 
+      - ./data:/pipeline/data
+
+      # Mount requirements file for live dependency changes
+      - ./requirements.txt:/pipeline/orchestration/requirements.txt
+
+      # Mount .env file for consistent runtime environment
+      - ./.env:/pipeline/.env
+
     expose:
       - 3001
     depends_on:
