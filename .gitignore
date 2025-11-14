@@ -15,3 +15,5 @@ ENV/
 data_extraction/Data
 orchestration/.
 logs
+docker-compose.yml
+Dockerfile.dwh

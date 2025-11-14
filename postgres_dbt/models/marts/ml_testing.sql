@@ -46,7 +46,7 @@ WITH testing AS (
     FROM {{ ref('analytics') }} AS f
     WHERE 
         f.disbursement_date BETWEEN '{{ test_start }}' AND '{{ test_end }}'
-        -- Ensure full observation period (e.g., at least 6 months since disbursement)
+        -- Ensure full observation period (at least 6 months since disbursement)
         AND f.disbursement_date <= CURRENT_DATE - INTERVAL '{{ observation_window_months }} months'
 )
 
